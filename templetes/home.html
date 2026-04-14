@@ -18,7 +18,7 @@
         h1 {
             text-align: center;
         }
-        input, select {
+        input {
             width: 100%;
             padding: 8px;
             margin: 5px 0;
@@ -48,22 +48,24 @@
 <div class="container">
     <h1>FWI Prediction</h1>
 
-    <form action="{{ url_for(predict_datapoint)}}" method="POST">
-        <input type="text" name="temperature" placeholder="Temperature" required>
-        <input type="text" name="rh" placeholder="RH" required>
-        <input type="text" name="ws" placeholder="Ws" required>
-        <input type="text" name="rain" placeholder="Rain" required>
-        <input type="text" name="ffmc" placeholder="FFMC" required>
-        <input type="text" name="dmc" placeholder="DMC" required>
-        <input type="text" name="isi" placeholder="ISI" required>
-        <input type="text" name="Class" placeholder="Class" required>
-        <input type="text" name="region" placeholder="region" required>
+    <form action="{{ url_for('predict_datapoint') }}" method="POST">
+        <input type="text" name="Temperature" placeholder="Temperature" required>
+        <input type="text" name="RH" placeholder="RH" required>
+        <input type="text" name="Ws" placeholder="Ws" required>
+        <input type="text" name="Rain" placeholder="Rain" required>
+        <input type="text" name="FFMC" placeholder="FFMC" required>
+        <input type="text" name="DMC" placeholder="DMC" required>
+        <input type="text" name="ISI" placeholder="ISI" required>
+        <input type="text" name="Class" placeholder="Class (0 or 1)" required>
+        <input type="text" name="Region" placeholder="Region (0 or 1)" required>
 
         <button type="submit">Predict</button>
     </form>
 
     <div class="result">
-        THE FWI prediction is: {{ prediction }}
+        {% if result %}
+            THE FWI prediction is: {{ result }}
+        {% endif %}
     </div>
 </div>
 
